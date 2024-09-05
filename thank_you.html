@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 2rem;
+        }
+        h1 {
+            color: #2e8b57;
+        }
+        a {
+            display: inline-block;
+            margin-top: 1rem;
+            text-decoration: none;
+            color: #fff;
+            background-color: #007bff;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+        a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Thank You for Completing the Survey!</h1>
+    <a href="{{ url_for('logout') }}">Logout</a>
+</body>
+</html>

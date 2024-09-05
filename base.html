@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stats SA Survey</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <div class="logo-left">
+                <img src="{{ url_for('static', filename='img/stats_sa_logo.png') }}" alt="Stats SA Logo">
+            </div>
+            <div class="logo-right">
+                <img src="{{ url_for('static', filename='img/cput_logo.png') }}" alt="CPUT Logo">
+            </div>
+        </div>
+        <div class="banner">
+            <img src="{{ url_for('static', filename='img/agriculture_banner.png') }}" alt="Agriculture Banner">
+        </div>
+    </header>
+
+    <nav class="navbar">
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+           
+        </ul>
+    </nav>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+
+    </footer>
+</body>
+</html>
+

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Screening Questions</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    {% extends "base.html" %}
+
+    {% block content %}
+    <h1>Screening Questions</h1>
+    <form method="POST" action="{{ url_for('screening') }}">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.is_farmer.label(for='is_farmer') }}<br>
+            {{ form.is_farmer(id='is_farmer') }}
+        </p>
+        <p>
+            {{ form.province.label(for='province') }}<br>
+            {{ form.province(id='province') }}
+        </p>
+        <p>
+            {{ form.submit() }}
+        </p>
+        <!-- Display form errors -->
+        {% for field in form %}
+            {% if field.errors %}
+                <ul>
+                    {% for error in field.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endfor %}
+    </form>
+    {% endblock %}
+</body>
+</html>
+
