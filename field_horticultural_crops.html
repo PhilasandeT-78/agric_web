@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Field and Horticultural Crops
+{% endblock %}
+
+{% block content %}
+    <h1>Field and Horticultural Crops</h1>
+    <form method="POST" action="{{ url_for('field_horticultural_crops') }}">
+        {{ form.hidden_tag() }}
+        
+        <div>
+            <label for="farming_practice">{{ form.farming_practice.label.text }}</label><br>
+            {% set farming_practice_data = form.farming_practice.data or [] %}
+            {% for value, label in form.farming_practice.choices %}
+                <input type="checkbox" name="farming_practice" value="{{ value }}" 
+                {% if value in farming_practice_data %} checked {% endif %}>
+                {{ label }}<br>
+            {% endfor %}
+        </div>
+
+        <div>
+            <label for="water_supply">{{ form.water_supply.label.text }}</label><br>
+            {% set water_supply_data = form.water_supply.data or [] %}
+            {% for value, label in form.water_supply.choices %}
+                <input type="checkbox" name="water_supply" value="{{ value }}" 
+                {% if value in water_supply_data %} checked {% endif %}>
+                {{ label }}<br>
+            {% endfor %}
+        </div>
+
+        <div>
+            <label for="irrigation_system">{{ form.irrigation_system.label.text }}</label><br>
+            {% set irrigation_system_data = form.irrigation_system.data or [] %}
+            {% for value, label in form.irrigation_system.choices %}
+                <input type="checkbox" name="irrigation_system" value="{{ value }}" 
+                {% if value in irrigation_system_data %} checked {% endif %}>
+                {{ label }}<br>
+            {% endfor %}
+        </div>
+
+        <div>
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+{% endblock %}
+
+
+
+
+

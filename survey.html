@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Land use by composition and area of the farm/forest</h2>
+<p>Note: The total area must be given in hectares. (10,000 square meters is approximately 1 hectare. 2.5 acres or 1.2 morgen is approximately 1 hectare. 100 acres are approximately 40 hectares. 100 morgen are approximately 86 hectares.)</p>
+
+<form method="POST" action="">
+  {{ form.hidden_tag() }}
+  
+  <!-- The table containing your form fields -->
+  <table>
+    <tr>
+      <th>Ownership and use of land</th>
+      <th>Own (Area in hectares)</th>
+      <th>Lease/rent from government (Area in hectares)</th>
+      <th>Lease/rent from traditional administration (Area in hectares)</th>
+      <th>Lease/rent from other (Area in hectares)</th>
+    </tr>
+    <tr>
+      <td>Used for crops (field, horticultural, flowers/ornamental plants)</td>
+      <td>{{ form.crops_own() }}</td>
+      <td>{{ form.crops_govt() }}</td>
+      <td>{{ form.crops_traditional() }}</td>
+      <td>{{ form.crops_other() }}</td>
+    </tr>
+    <tr>
+      <td>Cultivated pastures</td>
+      <td>{{ form.pastures_own() }}</td>
+      <td>{{ form.pastures_govt() }}</td>
+      <td>{{ form.pastures_traditional() }}</td>
+      <td>{{ form.pastures_other() }}</td>
+    </tr>
+    <tr>
+      <td>Land under protective cover, not shade cloth (e.g., greenhouses)</td>
+      <td>{{ form.greenhouses_own() }}</td>
+      <td>{{ form.greenhouses_govt() }}</td>
+      <td>{{ form.greenhouses_traditional() }}</td>
+      <td>{{ form.greenhouses_other() }}</td>
+    </tr>
+    <tr>
+      <td>Natural forest</td>
+      <td>{{ form.natural_forest_own() }}</td>
+      <td>{{ form.natural_forest_govt() }}</td>
+      <td>{{ form.natural_forest_traditional() }}</td>
+      <td>{{ form.natural_forest_other() }}</td>
+    </tr>
+    <tr>
+      <td>Woodland</td>
+      <td>{{ form.woodland_own() }}</td>
+      <td>{{ form.woodland_govt() }}</td>
+      <td>{{ form.woodland_traditional() }}</td>
+      <td>{{ form.woodland_other() }}</td>
+    </tr>
+    <tr>
+      <td>Forest plantations</td>
+      <td>{{ form.forest_plantations_own() }}</td>
+      <td>{{ form.forest_plantations_govt() }}</td>
+      <td>{{ form.forest_plantations_traditional() }}</td>
+      <td>{{ form.forest_plantations_other() }}</td>
+    </tr>
+  </table>
+  
+  <!-- Add a submit button below the table -->
+  <div style="text-align: center; margin-top: 20px;">
+      <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+</form>
+{% endblock %}
+
+
+
+
+
+
+
+
+

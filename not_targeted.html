@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Not Targeted
+{% endblock %}
+
+{% block content %}
+    <h1>Thank you, but you are not part of the targeted population for this survey.</h1>
+    <a href="{{ url_for('logout') }}" class="btn btn-primary">Logout</a>
+{% endblock %}
+

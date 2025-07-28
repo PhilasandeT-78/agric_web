@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Register</h1>
+    <form method="POST" action="{{ url_for('register') }}">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.first_name.label(for='first_name') }}<br>
+            {{ form.first_name(id='first_name', size=32) }}
+        </p>
+        <p>
+            {{ form.surname.label(for='surname') }}<br>
+            {{ form.surname(id='surname', size=32) }}
+        </p>
+        <p>
+            {{ form.email.label(for='email') }}<br>
+            {{ form.email(id='email', size=32) }}
+        </p>
+        <p>
+            {{ form.phone_number.label(for='phone_number') }}<br>
+            {{ form.phone_number(id='phone_number', size=32) }}
+        </p>
+        <p>
+            {{ form.address.label(for='address') }}<br>
+            {{ form.address(id='address', size=32) }}
+        </p>
+        <p>
+            {{ form.password.label(for='password') }}<br>
+            {{ form.password(id='password', size=32) }}
+        </p>
+        <p>
+            {{ form.confirm_password.label(for='confirm_password') }}<br>
+            {{ form.confirm_password(id='confirm_password', size=32) }}
+        </p>
+        
+        <hr>
+
+        <!-- Declaration Section -->
+        <p>
+            <strong>Declaration:</strong><br>
+            I declare that I am aware of the survey's objective, which is to gather data for agricultural analysis. I am aware that Stats SA will make use of the data collected from my response and that it will be kept confidential. I certify that, to the best of my knowledge, the information provided in this survey is accurate. I provide my informed agreement to take part in this survey by selecting the "I agree" option and advancing to the questionnaire.
+        </p>
+        <p>
+            <label for="agree">
+                <input type="radio" id="agree" name="declaration" value="agree"> I agree
+            </label><br>
+            <label for="disagree">
+                <input type="radio" id="disagree" name="declaration" value="disagree"> I disagree
+            </label>
+        </p>
+
+        <hr>
+
+        <p>
+            {{ form.submit() }}
+        </p>
+
+        <!-- Display form errors -->
+        {% for field in form %}
+            {% if field.errors %}
+                <ul>
+                    {% for error in field.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endfor %}
+    </form>
+    <script>
+        // Check if Geolocation is supported
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(success, error);
+        } else {
+            console.log("Geolocation is not supported by this browser.");
+        }
+    
+        function success(position) {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+    
+            // Send the location data to the server
+            fetch('/location', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ form.csrf_token._value() }}'
+                },
+                body: JSON.stringify({ latitude: latitude, longitude: longitude })
+            }).then(response => response.json())
+              .then(data => console.log('Location sent successfully:', data))
+              .catch(error => console.error('Error sending location:', error));
+        }
+    
+        function error() {
+            console.log("Unable to retrieve your location.");
+        }
+    </script>
+{% endblock %}

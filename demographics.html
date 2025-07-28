@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Location of the farm/forest/fishing operation</h2>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <p>{{ form.registered_name.label }}<br> {{ form.registered_name(size=40) }}</p>
+        
+        <p>{{ form.province.label }}<br> {{ form.province() }}</p>
+        <p>{{ form.district.label }}<br> {{ form.district() }}</p>
+        <p>{{ form.municipality.label }}<br> {{ form.municipality() }}</p>
+
+        <h2>Agricultural activity(ies) of this farm/forest/fisheries operation</h2>
+        <div>
+            {{ form.agricultural_activity.label }}<br>
+            {{ form.agricultural_activity }}
+        </div>
+
+        <div id="otherActivityText" style="display:none;">
+            <label>{{ form.other_agricultural_activity.label }}</label><br>
+            {{ form.other_agricultural_activity(size=40) }}
+        </div>
+
+        <h2>Farm Activity</h2>
+        <p>{{ form.farm_activity.label }}<br> {{ form.farm_activity() }}</p>
+        
+        <p>{{ form.submit() }}</p>
+    </form>
+
+    <script>
+        function toggleOtherActivityField() {
+            var otherCheckbox = document.querySelector('input[value="other"]');
+            var otherTextField = document.getElementById('otherActivityText');
+
+            if (otherCheckbox.checked) {
+                otherTextField.style.display = 'block';
+            } else {
+                otherTextField.style.display = 'none';
+                otherTextField.value = '';  
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            toggleOtherActivityField();  
+            document.querySelector('input[value="other"]').addEventListener('change', toggleOtherActivityField);
+        });
+    </script>
+{% endblock %}
+
+
